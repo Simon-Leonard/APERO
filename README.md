@@ -1,3 +1,3 @@
 # APERO
-small RNA detection from paired-end RNA-seq data
+small RNA detection # from paired-end RNA-seq data
 
