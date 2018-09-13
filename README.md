@@ -24,6 +24,7 @@ After installation, load the package with : library(APERO)
 APERO package contain two functions; One for each module. 
 Please refer to the help functions with help("APERO_start_detection") and help("APERO_stop_detection") for further documentation
 
+# Reference
 If you want two know more about APERO program and evaluation, have a look a the APERO publication (Leonard et al., in preparation)
 
 
