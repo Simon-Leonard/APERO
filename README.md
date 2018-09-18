@@ -11,7 +11,7 @@ The second module of APERO starts from the identified TSSs, and localizes the 3â
 # Installation 
 The package require the Rsamtools, reshape2 and snowfall libraries. Please install these libraries before runing APERO
 
-1- Download the APERO packge (.tar.gz file)
+1- Download the APERO package (.tar.gz file)
 
 2- Open R
 
