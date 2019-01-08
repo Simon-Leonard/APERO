@@ -8,8 +8,8 @@ APERO is written in R and can be used on all operating systems after installing 
  
 The second module of APERO starts from the identified TSSs, and localizes the 3’ end of each sRNA. Theoretically, since the small transcripts were not fragmented, the paired-end sequencing should immediately allow identifying the 3’ boundary from the aligned reads. However, due to experimental bias, spontaneous fragmentation and degradation of 3’-ends by polynucleotide phosphorylase, sRNA lengths are generally underestimated by this approach. Starting from an identified TSS, the method thus consists in iteratively extending the identified sRNA by locating the 3’ end of the longest fragments (if their number is statistically significant). This end position can then be either the actual 3’ end of the transcript, or a mere intermediate point or spontaneous breaking site within the transcript; to distinguish between these two scenarios, the program computes the number of fragments that overlap this position and were not yet counted in the previous iteration. If this number is significant (as compared to the number of fragments starting at the 5’ end, i.e. the expression strength of this sRNA), the sRNA is further extended toward the 3’ end of these overlapping fragments and the operation is repeated; otherwise, the iteration stops and this point is defined as the 3’ end.
 
-## Installation 
-The APEOR package require the Rsamtools, reshape2 and snowfall libraries. Please install these libraries before APERO.
+# Installation 
+The APERO package require the Rsamtools, reshape2 and snowfall libraries. Please install these libraries before APERO.
 
 ```R
 install.packages("BiocManager")
