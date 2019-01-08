@@ -27,14 +27,18 @@ devtools::install_github("Simon-Leonard/APERO")
 
 
 # Usage
-After installation, load the package with : library(APERO)
+After installation, load the package
+
+```R
+library(APERO)
+```
 
 APERO package contain two functions; One for each module. 
 Please refer to the help functions with help("APERO_start_detection") and help("APERO_stop_detection") for further documentation
 
 # Reference
-If you want two know more about APERO program and evaluation, have a look a the APERO publication (Leonard et al., in preparation)
+If you want too know more about APERO program and evaluation, have a look a the APERO publication (Leonard et al., in preparation)
 
 
 # Contact
-Don't hesitate to contact me for any question at simon_leonard[a]hotmail[.]fr
+Don't hesitate to contact me for any question/suggestion at simon_leonard[a]hotmail[.]fr
