@@ -997,18 +997,23 @@ function(work_dir=getwd(),start_table,mTEX_bam,pTEX_bam=NA,ptt_file=NULL,readthr
     fi=fi[order(fi$Position,decreasing = F),]
   }
   
-  #Annotation ----
+    #Annotation ----
   if (!is.null(ptt_file)){
     f=fi[,c(2,1,4,5,14,3)]
     colnames(f)[6]="Positional.Uncertainty"
-    ref=data.frame(ptt_file[-(1:2),],stringsAsFactors = F)
-    colnames(ref)=colnames(ptt_file)
-    fii=annot_apply_ARN_ptt(f,ref,genome_size)
+    
+    f$Position=ifelse(f$str=="+",((f$Position-f$Positional.Uncertainty)+(f$Position+f$lg-1))/2
+                      , ((f$Position+f$Positional.Uncertainty)+(f$Position-f$lg+1))/2)
+    
+    f$Positional.Uncertainty=ifelse(f$str=="+",((f$Position+f$lg-1)-(f$Position-f$Positional.Uncertainty))/2
+                                    , ((f$Position-f$lg+1)-(f$Position+f$Positional.Uncertainty))/2)
+    
+    fii=annot_apply_ARN_ptt(f,ptt,genome_size)
     
     fin=fii[,c(2,1,6,5,3,4,7,8)]
     fin$iteration_nb=fi$nb_allong
     fin$last_Ftsse=fi$rap
-    
+    fin$Positional.Uncertainty=fi$PU
     
   }else{
     fin=fi[,c(1:3,14,4,5,13,12)]
