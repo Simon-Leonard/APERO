@@ -1011,9 +1011,11 @@ function(work_dir=getwd(),start_table,mTEX_bam,pTEX_bam=NA,ptt_file=NULL,readthr
     fii=annot_apply_ARN_ptt(f,ptt,genome_size)
     
     fin=fii[,c(2,1,6,5,3,4,7,8)]
+    fin=fin[order(fin$ID_Transcrit,decreasing = F),]
     fin$iteration_nb=fi$nb_allong
     fin$last_Ftsse=fi$rap
     fin$Positional.Uncertainty=fi$PU
+    fin$Position=fi$Position
     
   }else{
     fin=fi[,c(1:3,14,4,5,13,12)]
