@@ -642,11 +642,8 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     dem$C1=NA
     dem$C2=NA
     dem=dem[,c(1,3:6,2)]
-    ref=data.frame(ptt_file[-(1:2),],stringsAsFactors = F)
-    colnames(ref)=colnames(ptt_file)
-    
-    
-    dem=annot_apply_ARN_ptt(dem,ref,genome_size)
+
+    dem=annot_apply_ARN_ptt(dem,ptt_file,genome_size)
     
     dem$C1=NULL
     dem$C2=NULL
