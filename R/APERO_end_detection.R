@@ -998,30 +998,36 @@ function(work_dir=getwd(),start_table,mTEX_bam,pTEX_bam=NA,ptt_file=NULL,readthr
   }
   
     #Annotation ----
-  if (!is.null(ptt_file)){
-    f=fi[,c(2,1,4,5,14,3)]
-    colnames(f)[6]="Positional.Uncertainty"
+   if (!is.null(ptt_file)) {
+    f = fi[, c(2, 1, 4, 5, 14, 3)]
+    colnames(f)[6] = "Positional.Uncertainty"
     
-    f$Position=ifelse(f$str=="+",((f$Position-f$Positional.Uncertainty)+(f$Position+f$lg-1))/2
-                      , ((f$Position+f$Positional.Uncertainty)+(f$Position-f$lg+1))/2)
+    save_position=f$Position
+    save_pu=f$Positional.Uncertainty
+    id_order=f$ID_Transcrit
     
-    f$Positional.Uncertainty=ifelse(f$str=="+",((f$Position+f$lg-1)-(f$Position-f$Positional.Uncertainty))/2
-                                    , ((f$Position-f$lg+1)-(f$Position+f$Positional.Uncertainty))/2)
+    f$Position = ifelse(f$str == "+", ((f$Position - f$Positional.Uncertainty) + 
+                                         (f$Position + f$lg - 1))/2, ((f$Position + f$Positional.Uncertainty) + 
+                                                                        (f$Position - f$lg + 1))/2)
+    f$Positional.Uncertainty = ifelse(f$str == "+", ((f$Position + 
+                                                        f$lg - 1) - (f$Position - f$Positional.Uncertainty))/2, 
+                                      ((f$Position - f$lg + 1) - (f$Position + f$Positional.Uncertainty))/2)
+    fii = annot_apply_ARN_ptt(f, ptt, genome_size)
+
+
+    fin = fi[, c(1:3, 14, 4, 5, 13, 12)]
+    colnames(fin)[3] = "Positional.Uncertainty"
+    colnames(fin)[7] = "iteration_nb"
+    colnames(fin)[8] = "last_Ftsse"
     
-    fii=annot_apply_ARN_ptt(f,ptt,genome_size)
-    
-    fin=fii[,c(2,1,6,5,3,4,7,8)]
-    fin=fin[order(fin$ID_Transcrit,decreasing = F),]
-    fin$iteration_nb=fi$nb_allong
-    fin$last_Ftsse=fi$rap
-    fin$Positional.Uncertainty=fi$PU
-    fin$Position=fi$Position
-    
-  }else{
-    fin=fi[,c(1:3,14,4,5,13,12)]
-    colnames(fin)[3]="Positional.Uncertainty"
-    colnames(fin)[7]="iteration_nb"
-    colnames(fin)[8]="last_Ftsse"
+    fin$Class=fii$Class[match(fin$ID_Transcrit,fii$ID_Transcrit)]
+    fin$Comment=fii$Comment[match(fin$ID_Transcrit,fii$ID_Transcrit)] 
+  }
+  else {
+    fin = fi[, c(1:3, 14, 4, 5, 13, 12)]
+    colnames(fin)[3] = "Positional.Uncertainty"
+    colnames(fin)[7] = "iteration_nb"
+    colnames(fin)[8] = "last_Ftsse"
   }
   #----
   print("DONE")
