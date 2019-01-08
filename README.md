@@ -34,7 +34,7 @@ library(APERO)
 ```
 
 APERO package contain two functions; One for each module. 
-Please refer to the help functions with help("APERO_start_detection") and help("APERO_stop_detection") for further documentation
+For further documentation, please refer to the example script and function help with help("APERO_start_detection") and help("APERO_stop_detection"). 
 
 # Reference
 If you want too know more about APERO program and evaluation, have a look a the APERO publication (Leonard et al., in preparation)
