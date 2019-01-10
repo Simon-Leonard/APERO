@@ -11,12 +11,14 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
   ### Functions ----
   library("Rsamtools")
   library(reshape2)
-  qw=function(b){ # Calculate qwidth with Position and cigar
+  qw=function(b){ # Use read position and cigar to calculate read qwidth
     let=as.numeric(gregexpr("[A-Z]",as.character(b[6]))[[1]])
     let=c(0,let,nchar(as.character(as.character(b[6]))))
     le=as.numeric(gregexpr("[M|D|N|X|=]",as.character(b[6]))[[1]])
     sum=0
-    for(i in 1:length(le)){sum=sum+as.numeric(substring(as.character(b[6]),let[max(which(let<le[i]))]+1,le[i]-1))}
+    for(i in 1:length(le)){
+      sum=sum+as.numeric(substring(as.character(b[6]),let[max(which(let<le[i]))]+1,le[i]-1))
+    }
     return(sum)
   }
   NET5=function(test,window_size,flanks_size,genome_size){# Calculate enrichment value; <---flank---[window]---flank--->
@@ -123,7 +125,7 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     colnames(test)[which(colnames(test)=="net")]=paste("net_w",window_size,"_f",flanks_size,sep="",collapse=NULL)
     return(test)
   } # Start enrichment measurment
-  agreg4<-function(tot2,ff){
+  agreg4<-function(tot2,ff){ function to merge overlaping detection
     colnames(tot2)[1]="5end"
     colnames(ff)[1]="5end"
     tot2=tot2[order(tot2$'str',tot2$'5end',decreasing=FALSE),]
