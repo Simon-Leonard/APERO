@@ -11,7 +11,7 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
   ### Functions ----
   library("Rsamtools")
   library(reshape2)
-  qw=function(b){
+  qw=function(b){ # Calculate qwidth with Position and cigar
     let=as.numeric(gregexpr("[A-Z]",as.character(b[6]))[[1]])
     let=c(0,let,nchar(as.character(as.character(b[6]))))
     le=as.numeric(gregexpr("[M|D|N|X|=]",as.character(b[6]))[[1]])
@@ -19,7 +19,7 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     for(i in 1:length(le)){sum=sum+as.numeric(substring(as.character(b[6]),let[max(which(let<le[i]))]+1,le[i]-1))}
     return(sum)
   }
-  NET5=function(test,window_size,flanks_size,genome_size){# <---flank---[window]---flank--->
+  NET5=function(test,window_size,flanks_size,genome_size){# Calculate enrichment value; <---flank---[window]---flank--->
     
     colnames(test)[1]="5end"
     test$`5end`=as.numeric(as.character(test$`5end`))
@@ -174,7 +174,7 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     return(m)
   }
   
-  detection_demarrages=function(d,wmax=7,flanks=c(3,5),seuil_net=0.1,genome_size){
+  detection_demarrages=function(d,wmax=7,flanks=c(3,5),seuil_net=0.1,genome_size){ # 5'end detection function
     wmin=1 # Initial value
     int=seq(wmin,wmax,2)
     res=data.frame(window=int,count=0)
@@ -239,7 +239,7 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     fin=fin[order(fin$Position,decreasing = F),]
     return(fin)
   }
-  annot_apply_ARN_ptt=function(data,ref,genome_size){
+  annot_apply_ARN_ptt=function(data,ref,genome_size){ # Annotation function
     options(digits=20)
     
     class<-function(data){ #Final annotation function
@@ -556,9 +556,9 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     data=class(data)
     
     return(data)
-  }#End function annot
+  }#End annotation function
   
-  ### BAM import ----
+  ### BAM import and processing----
   a=scanBam(bam_name,
              param=ScanBamParam(what=c("pos","flag","mpos","qname","strand","cigar"), 
                                 flag=scanBamFlag(isUnmappedQuery=FALSE, 
