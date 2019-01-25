@@ -557,31 +557,82 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
         }else {k=1}
         arret_boucle=0
         while((as.numeric(datap[1])+as.numeric(datap[6]))>=(as.numeric(refn[j,2])) & arret_boucle==0){
-          if (as.numeric(refn[j,2])>(as.numeric(datap[1])-as.numeric(datap[6])) & (as.numeric(refn[j,2])<(as.numeric(datap[1])+as.numeric(datap[6]))) & as.numeric(refn[j,3])>(as.numeric(datap[1])+as.numeric(datap[6]))){
-            if(datap[6]==0){a=paste("antisense to gene ",refn[j,5]," (",as.numeric(refn[j,2])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")} else{a=paste("antisense to gene ",refn[j,5]," (between",as.numeric(refn[j,2])-(as.numeric(datap[1])+as.numeric(datap[6])),"and",as.numeric(refn[j,2])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else {datap[8]=paste(datap[8],a,sep=";")}
+          if (as.numeric(refn[j,2])>(as.numeric(datap[1])-as.numeric(datap[6])) & 
+              (as.numeric(refn[j,2])<(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+              as.numeric(refn[j,3])>(as.numeric(datap[1])+as.numeric(datap[6]))){
+            if(datap[6]==0){
+              a=paste("antisense to gene ",refn[j,5]," (",as.numeric(refn[j,2])-(as.numeric(datap[1])-as.numeric(datap[6])),
+                      "nt downstream)")
+            } else{a=paste("antisense to gene ",refn[j,5]," (between",
+                           as.numeric(refn[j,2])-(as.numeric(datap[1])+as.numeric(datap[6])),"and",
+                           as.numeric(refn[j,2])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else {datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("Ad",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="Ad"}else {datap[7]=paste(datap[7],"Ad",sep=";")}
-          }else if ((as.numeric(refn[j,3])>=(as.numeric(datap[1])+as.numeric(datap[6]))) & (as.numeric(refn[j,2])<=(as.numeric(datap[1])-as.numeric(datap[6])))){
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="Ad"
+            }else {datap[7]=paste(datap[7],"Ad",sep=";")}
+          }else if ((as.numeric(refn[j,3])>=(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+                    (as.numeric(refn[j,2])<=(as.numeric(datap[1])-as.numeric(datap[6])))){
             a=paste("antisense to gene ",refn[j,5])
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("Ai",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="Ai"}else {datap[7]=paste(datap[7],"Ai",sep=";")}
-          }else if (((as.numeric(datap[1])-as.numeric(datap[6]))>=as.numeric(refn[j,3])) &((as.numeric(datap[1])-as.numeric(datap[6]))-as.numeric(refn[j,3]))<=300){
-            if (datap[6]==0){a=paste((as.numeric(datap[1])-as.numeric(refn[j,3])),"nt diverging with gene ",refn[j,5])}else {a=paste("Between ",(as.numeric(datap[1])-as.numeric(refn[j,3])-as.numeric(datap[6])),"nt and ",(as.numeric(datap[1])-as.numeric(refn[j,3])+as.numeric(datap[6])),"nt diverging with gene ",refn[j,5])}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="Ai"
+            }else {datap[7]=paste(datap[7],"Ai",sep=";")}
+          }else if (((as.numeric(datap[1])-as.numeric(datap[6]))>=as.numeric(refn[j,3])) &
+                    ((as.numeric(datap[1])-as.numeric(datap[6]))-as.numeric(refn[j,3]))<=300){
+            if (datap[6]==0){
+              a=paste((as.numeric(datap[1])-as.numeric(refn[j,3])),"nt diverging with gene ",refn[j,5])
+            }else {a=paste("Between ",(as.numeric(datap[1])-as.numeric(refn[j,3])-as.numeric(datap[6])),
+                           "nt and ",(as.numeric(datap[1])-as.numeric(refn[j,3])+as.numeric(datap[6])),
+                           "nt diverging with gene ",refn[j,5])}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("Div",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="Div"}else {datap[7]=paste(datap[7],"Div",sep=";")}
-          }else if (as.numeric(refn[j,3])>(as.numeric(datap[1])-as.numeric(datap[6])) & (as.numeric(refn[j,3])<(as.numeric(datap[1])+as.numeric(datap[6]))) & (as.numeric(refn[j,2])<(as.numeric(datap[1])-as.numeric(datap[6])))){
-            if(datap[6]==0){a=paste("antisense to gene ",refn[j,5]," (",as.numeric(refn[j,3])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")} else{a=paste("antisense to gene ",refn[j,5]," (between",as.numeric(refn[j,3])-(as.numeric(datap[1])+as.numeric(datap[6])),"and",as.numeric(refn[j,3])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else {datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="Div"
+            }else {datap[7]=paste(datap[7],"Div",sep=";")}
+          }else if (as.numeric(refn[j,3])>(as.numeric(datap[1])-as.numeric(datap[6])) & 
+                    (as.numeric(refn[j,3])<(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+                    (as.numeric(refn[j,2])<(as.numeric(datap[1])-as.numeric(datap[6])))){
+            if(datap[6]==0){
+              a=paste("antisense to gene ",refn[j,5]," (",as.numeric(refn[j,3])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")
+            }else{a=paste("antisense to gene ",refn[j,5]," (between",as.numeric(refn[j,3])-(as.numeric(datap[1])+as.numeric(datap[6])),
+                          "and",as.numeric(refn[j,3])-(as.numeric(datap[1])-as.numeric(datap[6])),"nt downstream)")}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else {datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("Av",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="Av"}else {datap[7]=paste(datap[7],"Av",sep=";")}
-          }else if (as.numeric(refn[j,2])>=(as.numeric(datap[1])-as.numeric(datap[6])) & (as.numeric(refn[j,3])<=(as.numeric(datap[1])+as.numeric(datap[6])))){
-            if(datap[6]==0){a=paste("Ai overlaping gene ",refn[j,5])} else{a=paste("Ai overlaping gene ",refn[j,5])}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else {datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="Av"
+            }else {datap[7]=paste(datap[7],"Av",sep=";")}
+          }else if (as.numeric(refn[j,2])>=(as.numeric(datap[1])-as.numeric(datap[6])) & 
+                    (as.numeric(refn[j,3])<=(as.numeric(datap[1])+as.numeric(datap[6])))){
+            if(datap[6]==0){
+              a=paste("Ai overlaping gene ",refn[j,5])
+            }else{a=paste("Ai overlaping gene ",refn[j,5])}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else {datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("AA",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="AA"}else {datap[7]=paste(datap[7],"AA",sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="AA"
+            }else {datap[7]=paste(datap[7],"AA",sep=";")}
           }
           j=j+1
           if(j>nrow(refn)){
@@ -591,31 +642,77 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
         }
         arret_boucle=0
         while((as.numeric(datap[1])-as.numeric(datap[6]))>=((as.numeric(refp[k,2]))-10000) & arret_boucle==0){
-          if ((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6])))<=250 & (as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6])))>=0 & (as.numeric(refp[k,2])>=(as.numeric(datap[1])+as.numeric(datap[6]))) ){
-            if (datap[6]==0){a=paste((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"nt upstream",refp[k,5])}else{a=paste("Between",(as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"and",(as.numeric(refp[k,2])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt upstream ",refp[k,5])}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+          if ((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6])))<=250 & 
+              (as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6])))>=0 & 
+              (as.numeric(refp[k,2])>=(as.numeric(datap[1])+as.numeric(datap[6]))) ){
+            if (datap[6]==0){
+              a=paste((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"nt upstream",refp[k,5])
+            }else{a=paste("Between",(as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"and",
+                          (as.numeric(refp[k,2])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt upstream ",refp[k,5])}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("P",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="P"}else {datap[7]=paste(datap[7],"P",sep=";")}
-          }else if ((as.numeric(refp[k,2])>(as.numeric(datap[1])-as.numeric(datap[6]))) & (as.numeric(refp[k,2])<(as.numeric(datap[1])+as.numeric(datap[6]))) & (as.numeric(refp[k,3])>(as.numeric(datap[1])+as.numeric(datap[6]))) ){
-            if (datap[6]==0){a=paste((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"nt upstream",refp[k,5])}else{a=paste("Between",(as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"and",(as.numeric(refp[k,2])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt upstream ",refp[k,5])}
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="P"
+            }else {datap[7]=paste(datap[7],"P",sep=";")}
+          }else if ((as.numeric(refp[k,2])>(as.numeric(datap[1])-as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,2])<(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,3])>(as.numeric(datap[1])+as.numeric(datap[6]))) ){
+            if (datap[6]==0){
+              a=paste((as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"nt upstream",refp[k,5])
+            }else{a=paste("Between",(as.numeric(refp[k,2])-(as.numeric(datap[1])-as.numeric(datap[6]))),"and",
+                          (as.numeric(refp[k,2])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt upstream ",refp[k,5])}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("5U",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="5U"}else {datap[7]=paste(datap[7],"5U",sep=";")}
-          }else if ((as.numeric(refp[k,2])<=(as.numeric(datap[1])-as.numeric(datap[6]))) & (as.numeric(refp[k,3])>=(as.numeric(datap[1])+as.numeric(datap[6])))){
-            a=paste("Whithin ",refp[k,5],", ",((as.numeric(refp[k,2]))-(as.numeric(datap[1])-as.numeric(datap[6]))),"nt after start and ",(as.numeric(refp[k,3])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt before end")
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="5U"
+            }else {datap[7]=paste(datap[7],"5U",sep=";")}
+          }else if ((as.numeric(refp[k,2])<=(as.numeric(datap[1])-as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,3])>=(as.numeric(datap[1])+as.numeric(datap[6])))){
+            a=paste("Whithin ",refp[k,5],", ",((as.numeric(refp[k,2]))-(as.numeric(datap[1])-as.numeric(datap[6]))),
+                    "nt after start and ",(as.numeric(refp[k,3])-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt before end")
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("I",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="I"}else {datap[7]=paste(datap[7],"I",sep=";")}
-          }else if ((as.numeric(refp[k,3])<(as.numeric(datap[1])+as.numeric(datap[6]))) & (as.numeric(refp[k,3])>(as.numeric(datap[1])-as.numeric(datap[6]))) & (as.numeric(refp[k,2])<(as.numeric(datap[1])-as.numeric(datap[6]))) ){
-            a=paste("3UTR of ",refp[k,5],", ",((as.numeric(refp[k,3]))-(as.numeric(datap[1])+as.numeric(datap[6]))),"nt before the end and ",((as.numeric(refp[k,3]))-(as.numeric(datap[1])-as.numeric(datap[6]))),"after")
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="I"
+            }else {datap[7]=paste(datap[7],"I",sep=";")}
+          }else if ((as.numeric(refp[k,3])<(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,3])>(as.numeric(datap[1])-as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,2])<(as.numeric(datap[1])-as.numeric(datap[6]))) ){
+            a=paste("3UTR of ",refp[k,5],", ",((as.numeric(refp[k,3]))-(as.numeric(datap[1])+as.numeric(datap[6]))),
+                    "nt before the end and ",((as.numeric(refp[k,3]))-(as.numeric(datap[1])-as.numeric(datap[6]))),"after")
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("3U",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="3U"}else {datap[7]=paste(datap[7],"3U",sep=";")}
-          }else if ((as.numeric(refp[k,3])<=(as.numeric(datap[1])+as.numeric(datap[6]))) & (as.numeric(refp[k,2])>=(as.numeric(datap[1])-as.numeric(datap[6]))) ){
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="3U"
+            }else {datap[7]=paste(datap[7],"3U",sep=";")}
+          }else if ((as.numeric(refp[k,3])<=(as.numeric(datap[1])+as.numeric(datap[6]))) & 
+                    (as.numeric(refp[k,2])>=(as.numeric(datap[1])-as.numeric(datap[6]))) ){
             a=paste("Overlaping gene ",refp[k,5])
-            if (datap[8]==a) {}else if(datap[8]==0){datap[8]=a}else{datap[8]=paste(datap[8],a,sep=";")}
+            if (datap[8]==a) {
+            }else if(datap[8]==0){
+              datap[8]=a
+            }else{datap[8]=paste(datap[8],a,sep=";")}
             cla=gregexpr("Chev",datap[7])[[1]][1]
-            if(cla>=0){}else if (datap[7]==0){datap[7]="Chev"}else {datap[7]=paste(datap[7],"Chev",sep=";")}
+            if(cla>=0){
+            }else if (datap[7]==0){
+              datap[7]="Chev"
+            }else {datap[7]=paste(datap[7],"Chev",sep=";")}
           }
           k=k+1
           if(k>nrow(refp)){
