@@ -10,10 +10,6 @@ function(work_dir=getwd(),start_table,mTEX_bam,pTEX_bam=NA,ptt_file=NULL,readthr
   if(genome_size<0){return("Genome size has to be a positive value")}
   
   # Functions ----
-  library(snowfall)
-  library(Rsamtools)
-  library(reshape2)
-  
   couv99_mtex_seul=function(f,pop,frac){
     options(digits=20)
     pu=as.numeric(as.character(f[3]))
