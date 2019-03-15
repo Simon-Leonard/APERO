@@ -10,6 +10,7 @@
     return(sum)
   }
 
+
   cov5<-function(data,genome_size,str=c("+","-")) { 
     # Make a coverage matrix of the detected 5'ends
     m=rep(0,genome_size)
@@ -25,6 +26,7 @@
     return(m)
   }
 
+
   sumfreq=function(vec){
     if(grepl("_",vec[5])){
       a=as.numeric(gregexpr("_",vec[5])[[1]])
@@ -35,4 +37,26 @@
       }
       return(sum(as.numeric(b)))
     }else{return(as.numeric(vec[5]))}
+  }
+
+
+  max_dem_int=function(f,dem){ ### Find the biggest start between the actual start et the actual end
+    options(digits=20)
+    pu=as.numeric(as.character(f[3]))
+    pos=as.numeric(as.character(f[2]))
+    lg=as.numeric(as.character(f[14]))
+    brin=as.character(f[4])
+    # fin=as.numeric(as.character(f[18]))
+    fin=ifelse(brin=="+",pos+lg-1,pos-lg+1)
+    if (brin=="+"){
+      de=dem[dem$Position > ceiling(pos) & dem$Position < fin & dem$str==brin & dem$Position!=pos,]
+      if (nrow(de)>0){
+        return(max(as.numeric(as.character(de$sumfreq))))
+      }else{return(0)}
+    }else {
+      de=dem[dem$Position < floor(pos) & dem$Position > fin & dem$str==brin & dem$Position!=pos,]
+      if (nrow(de)>0){
+        return(max(as.numeric(as.character(de$sumfreq))))
+      }else{return(0)}
+    } 
   }
