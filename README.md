@@ -27,13 +27,16 @@ devtools::install_github("Simon-Leonard/APERO")
 
 
 # Usage
-After installation, load the package
+After installation, load APERO and required packages
 
 ```R
+library(Rsamtools)
+library(reshape2)
+library(snowfall)
 library(APERO)
 ```
 
-APERO package contain two functions; One for each module. 
+APERO package contain two main functions; One for each module. 
 For further documentation, please refer to the example script and function help with help("APERO_start_detection") and help("APERO_stop_detection"). 
 
 # Reference
