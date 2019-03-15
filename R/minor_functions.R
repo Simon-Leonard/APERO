@@ -24,3 +24,15 @@
     
     return(m)
   }
+
+  sumfreq=function(vec){
+    if(grepl("_",vec[5])){
+      a=as.numeric(gregexpr("_",vec[5])[[1]])
+      a=c(0,a,nchar(vec[5])+1)
+      b=c()
+      for(i in 1:(length(a)-1)){
+        b=c(b,substring(vec[5],a[i]+1,a[i+1]-1))
+      }
+      return(sum(as.numeric(b)))
+    }else{return(as.numeric(vec[5]))}
+  }
