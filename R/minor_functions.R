@@ -9,3 +9,18 @@
     }
     return(sum)
   }
+
+  cov5<-function(data,genome_size,str=c("+","-")) { 
+    # Make a coverage matrix of the detected 5'ends
+    m=rep(0,genome_size)
+    if(sum(data$str==str)>0){
+      data=data[data$str==str,]
+      for (i in 1:nrow(data)) {
+        for (j in (data[i,1]-data[i,4]):(data[i,1]+data[i,4])){
+          m[j]=1/((2*data[i,2])+1)
+        }
+      }
+    }
+    
+    return(m)
+  }
