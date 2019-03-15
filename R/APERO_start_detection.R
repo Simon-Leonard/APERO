@@ -7,11 +7,6 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
   if (wmax<0){return("Please use a positive value for wmax")}
   if(min_dist<1){return("d has to be higher than 1")}
   if(genome_size<0){return("Genome size has to be a positive value")}
-
-  
-  ### Functions ----
-  library("Rsamtools")
-  library(reshape2)
   
   
   ### BAM import and processing----
