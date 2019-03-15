@@ -33,6 +33,7 @@ After installation, load APERO and required packages
 library(Rsamtools)
 library(reshape2)
 library(snowfall)
+
 library(APERO)
 ```
 
