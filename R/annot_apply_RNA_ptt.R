@@ -3,7 +3,7 @@ annot_apply_RNA_ptt=function(data,ref,genome_size){
   # Input "ref" = ptt table
   # Input "data" = 6 columns table
   # 1st column = "Position"; 6th column = "Positional.Uncertainty"; One column (2nd, 3rd, 4th or 5th) has to be "str" (for strand)
-  # Return a 8 columns table : The input table, a "Class" column (short annotation) and a "Comment" column (detailed annotation) 
+  # Returns an 8 columns table : The input table, a "Class" column (short annotation) and a "Comment" column (detailed annotation) 
   options(digits=20)
   
   class<-function(data){ #Final annotation function to reorganize classes
