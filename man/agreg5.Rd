@@ -33,9 +33,6 @@ str : strain
 sum_freq : number of mapped reads with the corresponding 5' position and strand
 }
 }
-\details{
-See APERO's publication for more details
-}
 \value{
 A data.frame containing the merged start regions with the same columns than the tot2 data.frame
 }
