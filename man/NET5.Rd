@@ -31,9 +31,6 @@ Size of the neighboring region to compute local enrichment. Corresponds to f in 
 Genome size
 }
 }
-\details{
-See APERO's publication for more details
-}
 \value{
 The test data.frame with an additional column containing the local enrichment value. 
 }
