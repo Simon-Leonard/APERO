@@ -28,11 +28,17 @@ Name of the annotation table which is then used to classify each start region wi
 Here is an example of a required ptt file for RNA annotation:
 
 Escherichia coli str. K-12 substr. MG1655, complete genome. - 1..4641652
+    
 4140 proteins
+    
 Location	Strand	Length	PID	Gene	Synonym	Code	COG	Product
+    
 190..255	+	21	16127995	thrL	b0001	-	-	thr operon leader peptide
+    
 337..2799	+	820	16127996	thrA	b0002	-	COG0527E,COG0527E	Bifunctional aspartokinase/homoserine dehydrogenase 1
+    
 2801..3733	+	310	16127997	thrB	b0003	-	COG0083E,COG0083E	homoserine kinase
+    
 3734..5020	+	428	16127998	thrC	b0004	-	COG0498E,COG0498E	L-threonine synthase
 }
   \item{wmax}{
