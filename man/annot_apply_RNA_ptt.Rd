@@ -39,9 +39,6 @@ Location	Strand	Length	PID	Gene	Synonym	Code	COG	Product
 Genome size
 }
 }
-\details{
-See APERO's publication for more details
-}
 \value{
 Returns an 8 columns table : The input data merged with a "Class" column (short annotation) and a "Comment" column (detailed annotation) 
 }
