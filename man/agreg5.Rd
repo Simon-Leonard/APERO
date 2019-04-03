@@ -5,7 +5,7 @@
 Function used to merge overlapping start regions 
 }
 \description{
-Take detected start regions and mapped read position to merge overlapping start regions
+Use detected start regions and mapped read positions to merge overlapping start regions
 }
 \usage{
 agreg5(tot2,ff)
