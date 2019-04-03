@@ -34,9 +34,6 @@ Enrichment threshold to identify start regions
 Genome size
 }
 }
-\details{
-See APERO's publication for more details
-}
 \value{
 A start region data.frame described with central position, positionnal uncertainty, strand, and number of starting reads
 }
