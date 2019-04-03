@@ -22,7 +22,7 @@ The sum_freq columns contains the number of mapped reads with the corresponding 
 Maximal size of the window to compute local enrichment. Has to be an odd number and is equal to 2*maximal width+1.
 }
   \item{flanks}{
-Size of the neighboring region to compute local enrichment. Multiple sizes can be stored in a vector.
+Size of the neighboring region to compute local enrichment. A vector containing multiple sizes can also be.
 }
   \item{seuil_net}{
 Enrichment threshold to identify start regions
