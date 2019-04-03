@@ -6,8 +6,11 @@ Annotation function of the APERO package
 }
 \description{
 RNAs or start regions are classified according to their localization regarding to CDS and strand from which they are transcribed.
+  
 Orphan sRNAs are transcribed from intergenic regions. 
+  
 Transcribed from the same strand of the CDS are: P RNAs/start region corresponding to primary RNAs/start region located in the 250 nucleotides (nt) upstream the CDS without overlapping it; 5’-UTR and 3’-UTR RNAs/start region overlapping start and stop codon respectively. 
+
 Transcribed from the opposite strand of the CDS are:  Ai corresponding to antisense RNAs/start region transcribed inside CDS; Div corresponding to RNAs/start region starting in the 250 nucleotides (nt) upstream the CDS; 5’Ai and 3’Ai RNAs/start region overlapping start and stop codon respectively.
 }
 \usage{
@@ -25,8 +28,11 @@ Example :
 Location	Strand	Length	PID	Gene	Synonym	Code	COG	Product
     
 190..255	+	21	16127995	thrL	b0001	-	-	thr operon leader peptide
+    
 337..2799	+	820	16127996	thrA	b0002	-	COG0527E,COG0527E	Bifunctional aspartokinase/homoserine dehydrogenase 1
+    
 2801..3733	+	310	16127997	thrB	b0003	-	COG0083E,COG0083E	homoserine kinase
+    
 3734..5020	+	428	16127998	thrC	b0004	-	COG0498E,COG0498E	L-threonine synthase
 }
   \item{genome_size}{
