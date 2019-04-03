@@ -23,6 +23,7 @@ ptt-like annotation data.frame.
 Example :
 
 Location	Strand	Length	PID	Gene	Synonym	Code	COG	Product
+    
 190..255	+	21	16127995	thrL	b0001	-	-	thr operon leader peptide
 337..2799	+	820	16127996	thrA	b0002	-	COG0527E,COG0527E	Bifunctional aspartokinase/homoserine dehydrogenase 1
 2801..3733	+	310	16127997	thrB	b0003	-	COG0083E,COG0083E	homoserine kinase
