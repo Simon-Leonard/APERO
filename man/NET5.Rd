@@ -2,7 +2,7 @@
 \alias{NET5}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-  NET5 function used in the first module of the APERO programm dedicated to the identification of 5’ end RNAs.
+  NET5 function used in the first module of the APERO programm dedicated to the identification of 5' end RNAs.
 }
 \description{
 Compute the local enrichment value as described in the paper  
