@@ -5,7 +5,7 @@
 Detection of start regions
 }
 \description{
-
+This is the main function of the APERO's first module dedicatied to start region detection, which are defined as regions exhibiting a local enrichment in read starts compared to neighbor regions.
 }
 \usage{
  detection5(d,wmax,flanks,seuil_net,genome_size)
