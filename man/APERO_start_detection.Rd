@@ -2,11 +2,11 @@
 \alias{APERO_start_detection}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-This is the first module of the APERO programm which is dedicated to the identification and mapping of transcriptional start regions, i.e., the 5’ ends of putative RNAs.
+This is the first module of the APERO programm which is dedicated to the identification and mapping of transcriptional start regions, i.e., the 5' ends of putative RNAs.
 }
 \description{
 Inspired by previous algorithms specifically dedicated to Transcript Start Site (TSS) detection, start regions are defined as regions exhibiting a local enrichment in read starts compared to neighbor regions. 
-Two common difficulties are taken into account: 1- due to wobbling of the RNA Polymerase, start region peaks are not always defined sharply, but can extend over several nucleotides; 2- adjacent peaks distant of several nucleotides are sometimes observed, reflecting alternate 5’ starts of the same transcript and preventing the identification of individual peaks. 
+Two common difficulties are taken into account: 1- due to wobbling of the RNA Polymerase, start region peaks are not always defined sharply, but can extend over several nucleotides; 2- adjacent peaks distant of several nucleotides are sometimes observed, reflecting alternate 5' starts of the same transcript and preventing the identification of individual peaks. 
 
 The analysis procedure was designed to handle these issues and optimize the precision, by varying the scanning window sizes, and favoring the most well-defined start region. 
 The user can play on two major parameters : the maximal accepted width w of a start region peak, and the minimal distance between independent start regions (i.e., the spatial resolution of the detection method, d). 
