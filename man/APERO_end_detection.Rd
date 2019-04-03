@@ -2,7 +2,7 @@
 \alias{APERO_end_detection}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-This the second module of the APERO program which localizes the 3' end of each RNA.
+Second module of the APERO program which localizes the 3' end of each RNA.
 }
 \description{
 Starting from an identified Transcript Start Site (TSS), the method consists in iteratively extending the identified RNA by locating the 3' end of the longest fragments (if their number is statistically significant).
