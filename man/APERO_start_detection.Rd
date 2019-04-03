@@ -2,7 +2,7 @@
 \alias{APERO_start_detection}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-This is the first module of the APERO programm which is dedicated to the identification and mapping of transcriptional start regions, i.e., the 5' ends of putative RNAs.
+First module of the APERO programm which is dedicated to the identification and mapping of transcriptional start regions, i.e., the 5' ends of putative RNAs.
 }
 \description{
 Inspired by previous algorithms specifically dedicated to Transcript Start Site (TSS) detection, start regions are defined as regions exhibiting a local enrichment in read starts compared to neighbor regions. 
