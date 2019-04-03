@@ -13,10 +13,13 @@ Detection of start regions
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{d}{
-data.frame with the following column names : 5end, str, sum_freq
-The 5end column has to be the first column of the data.fame. It contains 5' positions of mapped reads
-The str column contains corresponding strand
-The sum_freq columns contains the number of mapped reads with the corresponding 5' position and strand
+data.frame with the following column names : 5end, str, sum_freq.
+   
+The 5end column has to be the first column of the data.fame. It contains 5' positions of mapped reads.
+
+The str column contains corresponding strand.
+
+The sum_freq columns contains the number of mapped reads with the corresponding 5' position and strand.
 }
   \item{wmax}{
 Maximal size of the window to compute local enrichment. Has to be an odd number and is equal to 2*maximal width+1.
