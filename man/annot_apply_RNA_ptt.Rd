@@ -9,9 +9,9 @@ RNAs or start regions are classified according to their localization regarding t
   
 Orphan sRNAs are transcribed from intergenic regions. 
   
-Transcribed from the same strand of the CDS are: P RNAs/start region corresponding to primary RNAs/start region located in the 250 nucleotides (nt) upstream the CDS without overlapping it; 5’-UTR and 3’-UTR RNAs/start region overlapping start and stop codon respectively. 
+Transcribed from the same strand of the CDS are: P RNAs/start region corresponding to primary RNAs/start region located in the 250 nucleotides (nt) upstream the CDS without overlapping it; 5'-UTR and 3'-UTR RNAs/start region overlapping start and stop codon respectively. 
 
-Transcribed from the opposite strand of the CDS are:  Ai corresponding to antisense RNAs/start region transcribed inside CDS; Div corresponding to RNAs/start region starting in the 250 nucleotides (nt) upstream the CDS; 5’Ai and 3’Ai RNAs/start region overlapping start and stop codon respectively.
+Transcribed from the opposite strand of the CDS are:  Ai corresponding to antisense RNAs/start region transcribed inside CDS; Div corresponding to RNAs/start region starting in the 250 nucleotides (nt) upstream the CDS; 5'Ai and 3'Ai RNAs/start region overlapping start and stop codon respectively.
 }
 \usage{
 annot_apply_RNA_ptt(data,ref,genome_size)
