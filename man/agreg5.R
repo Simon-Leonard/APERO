@@ -14,15 +14,22 @@ agreg5(tot2,ff)
 \arguments{
   \item{tot2}{
 Start regions data.frame with the following column names : 5end (has to be the first column), PU, str and sumfreq.
+    
 5end : central position of the start region. 
+    
 PU : positional uncertainty of the region.
+    
 str : strand of the region
+    
 sumfreq : number of starting reads in the region
 }
   \item{ff}{
 Mapped read coordinates data.frame with the following column names : 5end (has to be the first column), str, sum_freq.
+    
 5end : 5' positions of mapped reads
+
 str : strain
+
 sum_freq : number of mapped reads with the corresponding 5' position and strand
 }
 }
