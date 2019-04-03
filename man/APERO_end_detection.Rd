@@ -2,12 +2,12 @@
 \alias{APERO_end_detection}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-This the second module of the APERO program which localizes the 3’ end of each RNA.
+This the second module of the APERO program which localizes the 3' end of each RNA.
 }
 \description{
-Starting from an identified Transcript Start Site (TSS), the method consists in iteratively extending the identified RNA by locating the 3’ end of the longest fragments (if their number is statistically significant).
-This end position can then either be the actual 3’ end of the transcript, or a mere intermediate point or spontaneous breaking site within the transcript; to distinguish between these two scenarios, the program computes the number of fragments that overlap this position and were not yet counted in the previous iteration.
-If this number is significant (as compared to the number of fragments starting at the 5’ end, i.e. the expression strength of this sRNA), the sRNA is further extended toward the 3’ end of these new fragments and the operation is repeated; otherwise, the iteration stops and this point is defined as the 3’ end.
+Starting from an identified Transcript Start Site (TSS), the method consists in iteratively extending the identified RNA by locating the 3' end of the longest fragments (if their number is statistically significant).
+This end position can then either be the actual 3' end of the transcript, or a mere intermediate point or spontaneous breaking site within the transcript; to distinguish between these two scenarios, the program computes the number of fragments that overlap this position and were not yet counted in the previous iteration.
+If this number is significant (as compared to the number of fragments starting at the 5' end, i.e. the expression strength of this sRNA), the sRNA is further extended toward the 3' end of these new fragments and the operation is repeated; otherwise, the iteration stops and this point is defined as the 3' end.
 The tendency of the algorithm to increase the transcript size is set by a threshold parameter (Fmin), which an optimal value can be suggested automatically from the analysis of the dataset provided by the user.
 }
 \usage{
