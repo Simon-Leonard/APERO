@@ -1,4 +1,8 @@
-# Load Package :
+# Load Packages :
+library(Rsamtools)
+library(reshape2)
+library(snowfall)
+
 library(APERO)
 
 # Load annotation file
