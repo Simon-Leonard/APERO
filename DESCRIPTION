@@ -2,7 +2,7 @@ Package: APERO
 Type: Package
 Title: Analysis of Paired-End RNA-seq Output
 Version: 1.0.2
-Date: 2018-09-12
+Date: 2019-05-05
 Author: Simon Leonard
 Maintainer: Simon Leonard <simon_leonard@hotmail.fr>
 Description: small RNA detection from paired-end RNA-seq data
