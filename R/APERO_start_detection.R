@@ -29,7 +29,8 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     bam=bam[which(bam$flag%in%FLAG),]
     rm(FLAG)
     
-    bam$qwidth=apply(bam,1,qw) ### Apply with snowfall crash
+    bam$qwidth=apply(bam,1,qw) ### Use read position and cigar to calculate and return read qwidth
+    ### Use Apply because it crashes with snowfall
     if (sum(table(bam$qname)==2)!=length(table(bam$qname))){bam=bam[bam$qname %in% (names(table(bam$qname)[table(bam$qname)==2])),]}
     
     
@@ -85,6 +86,8 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
   ### Start detection ----
   flanks=c(1:min_dist)
   dem=detection5(d,wmax=(2*wmax)+1,flanks=flanks,seuil_net=enrichment,genome_size=genome_size)
+  # Function to detect start regions
+  # type help(detection5) to see function help
   
   dem=dem[which(dem$freq>min_read_number),]
   
@@ -95,6 +98,8 @@ function(work_dir=getwd(),bam_name,ptt_file=NULL,wmax,min_dist,enrichment,min_re
     dem=dem[,c(1,3:6,2)]
 
     dem=annot_apply_RNA_ptt(dem,ptt_file,genome_size)
+    # Function to annotate start regions
+    # type help(annot_apply_RNA_ptt) to see function help
     
     dem$C1=NULL
     dem$C2=NULL
