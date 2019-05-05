@@ -93,3 +93,123 @@ R2_99pour=function(f,pop,tex=c("yes","no"),frac){ # Take a RNA start and return 
   }
   return(f)
 }
+
+
+couv99_mtex_seul=function(f,pop,frac){
+  # Take one RNA defined as a start position and an end position and calculate :
+  #   - Number of reads inside the RNA
+  #   - Number of reads overlapping the RNA end
+  #   - End position if we consider reads overlapping the RNA end
+  #   - Number of reads ending à this end position
+  options(digits=20)
+  pu=as.numeric(as.character(f[3]))
+  pos=as.numeric(as.character(f[2]))
+  lg=as.numeric(as.character(f[8]))
+  brin=as.character(f[4])
+  if (brin=="+"){
+    po=pop[pop$`5end` %in% (floor(pos)-5):(pos+lg-1) & pop$str==brin & pop$mate5end<=(pos+lg-1),]
+    f[10]=sum(po$freq)/(max(po$mate5end)-min(po$'5end')+1)
+    
+    po=pop[pop$`5end` %in% (ceiling(pos)+6):(pos+lg-1) & pop$str==brin & pop$mate5end>(pos+lg-1),]
+    
+    
+    if (sum(po$freq)>0){
+      p=rep(po$mate5end,po$freq)
+      p=p[order(p,decreasing = T)]
+      if(sum(po$freq)==1){
+        f[12]=po$mate5end
+        f[11]=sum(po$freq)
+      }else{
+        pp=p[(ceiling(frac*length(p))+1):length(p)]
+        f[12]=max(pp)
+        f[11]=length(pp)
+      }
+    }else {
+      f[12]=0
+      f[11]=0
+    }
+    
+    f[13]=ifelse(nrow(po)>0,sum(po$freq[po$mate5end==f[12]]),0)
+    
+  }else {
+    po=pop[pop$`5end` %in% (ceiling(pos)+5):(pos-lg+1) & pop$str==brin & pop$mate5end>=(pos-lg+1),]
+    f[10]=sum(po$freq)/(max(po$'5end')-min(po$mate5end)+1)
+    
+    po=pop[pop$`5end` %in% (floor(pos)-6):(pos-lg+1) & pop$str==brin & pop$mate5end<(pos-lg+1),]
+    
+    
+    if (sum(po$freq)>0){
+      p=rep(po$mate5end,po$freq)
+      p=p[order(p,decreasing = F)]
+      if(sum(po$freq)==1){
+        f[12]=po$mate5end
+        f[11]=sum(po$freq)
+      }else{
+        pp=p[(ceiling(frac*length(p))+1):length(p)]
+        f[12]=min(pp)
+        f[11]=length(pp)
+      }
+    }else {
+      f[12]=0
+      f[11]=0
+    }
+    
+    f[13]=ifelse(nrow(po)>0,sum(po$freq[po$mate5end==f[12]]),0)
+  }
+  return(f)
+}
+
+
+recursive3=function(tab,h,pop,frac,nb_coeur,seuil_ratio,dem_TEX=c("yes","no")){
+   # Take a dataframe containing RNA start and end positions
+   # Return RNA coordinates with extended positions (under condition)
+  
+  T1<-Sys.time()
+  h1=tab[tab$rap>seuil_ratio,] # 3'end extension
+  if(nrow(h1)==0){print("Nothing else to extend");return(list(NULL,tab))}
+  h2=tab[tab$rap<=seuil_ratio,] # No 3'end extension
+  
+  if(dem_TEX=="yes"){
+    max_freq_dem_int=apply(h1,1,max_dem_int,dem=h)
+    h2b=h1[max_freq_dem_int>h1$sumfreq,] # No 3'end extension due to the presence of a bigger start between the 5' and the 3'end
+    h1=h1[max_freq_dem_int<=h1$sumfreq,] # 3'end extension
+    if(nrow(h1)==0){print("Nothing to extend in the input");return(list(NULL,tab))}
+  }else{h2b=NULL}
+  
+  
+  h1$lg_agreg=ifelse(h1$str=="+",h1$fin_couple_chev-h1$Position+1,h1$Position-h1$fin_couple_chev+1)
+  
+  h1$nb_int=0
+  h1$nb_chev=0
+  h1$fin_couple_chev=0
+  h1$nb_fin_chev=0
+  
+  if(nrow(h1)>20){
+    library(snowfall)
+    cl=makeCluster(nb_coeur, type = "SOCK")
+    vglobal=list(pop)
+    clusterExport(cl, "vglobal", envir = environment())
+    da=h1
+    res<-parApply(cl, MARGIN = 1,X = da, FUN = couv99_mtex_seul,pop=pop, frac)
+    stopCluster(cl)
+    
+    
+    res2=data.frame(t(res))
+  }else{res2=data.frame(t(apply(X = h1,MARGIN = 1,FUN = couv99_mtex_seul,pop=pop,frac)))}
+  
+  
+  
+  
+  res2$Position=as.numeric(as.character(res2$Position))
+  res2$fin_couple_chev=as.numeric(as.character(res2$fin_couple_chev))
+  res2$Position=as.numeric(as.character(res2$Position))
+  res2$nb_int=as.numeric(as.character(res2$nb_int))
+  res2$nb_chev=as.numeric(as.character(res2$nb_chev))
+  res2$rap=as.numeric(as.character(res2$rap))
+  res2$sumfreq=as.numeric(as.character(res2$sumfreq))
+  
+  res2$rap=res2$nb_chev/res2$nb_int
+  T2<-Sys.time() 
+  print(difftime(T2,T1))
+  return(list(res2,rbind(h2,h2b)))
+}
