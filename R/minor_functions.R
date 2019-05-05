@@ -1,4 +1,8 @@
-  qw=function(b){ 
+###
+### This file contains minor functions used is the main functions
+###
+
+qw=function(b){ 
     # Use read position and cigar to calculate and return read qwidth
     let=as.numeric(gregexpr("[A-Z]",as.character(b[6]))[[1]])
     let=c(0,let,nchar(as.character(as.character(b[6]))))
@@ -28,6 +32,8 @@
 
 
   sumfreq=function(vec){
+    # vec[5] contains numbers separated by "_"
+    # sumfreq(vec) return the sum of this numbers
     if(grepl("_",vec[5])){
       a=as.numeric(gregexpr("_",vec[5])[[1]])
       a=c(0,a,nchar(vec[5])+1)
@@ -40,7 +46,8 @@
   }
 
 
-  max_dem_int=function(f,dem){ ### Find the biggest start between the actual start et the actual end
+  max_dem_int=function(f,dem){ 
+    # Find the biggest start between the actual start et the actual end
     options(digits=20)
     pu=as.numeric(as.character(f[3]))
     pos=as.numeric(as.character(f[2]))
@@ -62,7 +69,8 @@
   }
 
 
-R2_99pour=function(f,pop,tex=c("yes","no"),frac){ # Take a RNA start and return the longuest end
+R2_99pour=function(f,pop,tex=c("yes","no"),frac){ 
+  # Take a RNA start and return the longuest end
   # frac=X means "do not take the X% of longuest reads to prevent readthrough
   pos=as.numeric(as.character(f[2]))
   pu=as.numeric(as.character(f[3]))
