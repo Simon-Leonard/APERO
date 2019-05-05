@@ -104,11 +104,13 @@ R2_99pour=function(f,pop,tex=c("yes","no"),frac){
 
 
 couv99_mtex_seul=function(f,pop,frac){
-  # Take one RNA defined as a start position and an end position and calculate :
+  ### Take one RNA defined as a start position and an end position and calculate :
   #   - Number of reads inside the RNA
   #   - Number of reads overlapping the RNA end
   #   - End position if we consider reads overlapping the RNA end
   #   - Number of reads ending à this end position
+    
+  print("test")
   options(digits=20)
   pu=as.numeric(as.character(f[3]))
   pos=as.numeric(as.character(f[2]))
