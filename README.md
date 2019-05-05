@@ -40,6 +40,8 @@ library(APERO)
 APERO package contain two main functions; One for each module. 
 For further documentation, please refer to the example script and function help with help("APERO_start_detection") and help("APERO_stop_detection"). 
 
+An example dataset with the script used to detect RNAs is also provided in the example folder
+
 # Reference
 If you want too know more about APERO program and evaluation, have a look a the APERO publication (Leonard et al., in preparation)
 
