@@ -60,3 +60,36 @@
       }else{return(0)}
     } 
   }
+
+
+R2_99pour=function(f,pop,tex=c("yes","no"),frac){ # Take a RNA start and return the longuest end
+  # frac=X means "do not take the X% of longuest reads to prevent readthrough
+  pos=as.numeric(as.character(f[2]))
+  pu=as.numeric(as.character(f[3]))
+  brin=as.character(f[4])
+  if (tex=="yes"){po=pop[pop$`5end` %in% (pos-pu):(pos+pu) & pop$str==brin,]}
+  if (tex=="no"){po=pop[pop$`5end` %in% (floor(pos)-5):(ceiling(pos)+5) & pop$str==brin,]}
+  
+  if (sum(po$freq)>0){
+    p=rep(po$mate5end,po$freq)
+    
+    if (brin=="+"){
+      p=p[order(p,decreasing = T)]
+      if(sum(po$freq)==1){f[6]=po$mate5end
+      }else{
+        pp=p[(ceiling(frac*length(p))+1):length(p)]
+        f[6]=max(pp)
+      }
+      
+      
+    }else {
+      p=p[order(p,decreasing = F)]
+      if(sum(po$freq)==1){f[6]=po$mate5end
+      }else{
+        pp=p[(ceiling(frac*length(p))+1):length(p)]
+        f[6]=min(pp)
+      }
+    }
+  }
+  return(f)
+}
