@@ -6,7 +6,7 @@ library(snowfall)
 library(APERO)
 
 # Load annotation file
-ptt=read.table("E:/APERO/NC_016810.ptt",sep="\t",skip=2,header=T,stringsAsFactors = F)
+ptt=read.csv("E:/APERO/NC_016810.ptt",sep="\t",skip=2,header=T,stringsAsFactors = F)
 
 # 5'end detection
 res=APERO_start_detection(work_dir = "E:/APERO/", bam_name = "SRR2149882_position_1_to_10kb.bam", ptt_file =ptt
