@@ -45,10 +45,7 @@ An example dataset with the script used to detect RNAs is also provided in the e
 # Reference
 If you want too know more about APERO program and evaluation, have a look a the APERO publication :
 
-APERO: a genome-wide approach for identifying bacterial small RNAs from RNA-Seq data 
-Simon Leonard, Sam Meyer, Stephan Lacour, William Nasser, Florence Hommais Sylvie Reverchon
-Nucleic Acids Research, gkz485, https://doi.org/10.1093/nar/gkz485
-
+Simon Leonard, Sam Meyer, Stephan Lacour, William Nasser, Florence Hommais, Sylvie Reverchon, APERO: a genome-wide approach for identifying bacterial small RNAs from RNA-Seq data, Nucleic Acids Research, , gkz485, https://doi.org/10.1093/nar/gkz485
 
 # Contact
 Don't hesitate to contact me for any question/suggestion at simon_leonard[a]hotmail[.]fr
