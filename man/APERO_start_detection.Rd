@@ -23,6 +23,9 @@ Path to the bam file used for detection
   \item{bam_name}{
 Name of the bam file used for detection. It has to contain the ".bam" extension. Example :"my_bam_file.bam"
 }
+  \item{paired_end_data}{
+Is your data paired-end ? Set to FALSE if you have single end data (default : TRUE)
+}
   \item{ptt_file}{
 Name of the annotation table which is then used to classify each start region with respect to neighboring or overlapping CDS. It has to be already imported in R and respect the ptt format
 Here is an example of a required ptt file for RNA annotation:
