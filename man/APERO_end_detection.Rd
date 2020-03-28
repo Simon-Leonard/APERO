@@ -27,6 +27,9 @@ Name of the bam file not treated with TEX
   \item{pTEX_bam}{
 Name of the bam file treated with TEX. Replace by NA if you do not have TEX treated library (default value)
 }
+  \item{paired_end_data}{
+Is your data paired-end ? Set to FALSE if you have single end data (default : TRUE)
+}
   \item{ptt_file}{
 Name of the annotation table which is then used to classify each TSS with respect to neighboring or overlapping CDS. It has to be already imported in R and respect the ptt format
 Here is an example of a required ptt file for RNA annotation:
