@@ -60,7 +60,7 @@ APERO_end_detection <-
 
         x$agreg=paste(x$'5end',x$'3end',x$str,sep=".")
         y=data.frame(table(x$agreg))
-        y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")),sum_freq=y$Freq)
+        y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")), freq=y$Freq)
         y=y[,c(1,2,4,3)]
         colnames(y)[1]="5end"
 
@@ -156,7 +156,7 @@ APERO_end_detection <-
 
           x$agreg=paste(x$'5end',x$'3end',x$str,sep=".")
           y=data.frame(table(x$agreg))
-          y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")),sum_freq=y$Freq)
+          y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")), freq=y$Freq)
           y=y[,c(1,2,4,3)]
           colnames(y)[1]="5end"
 
@@ -388,7 +388,7 @@ APERO_end_detection <-
 
           x$agreg=paste(x$'5end',x$'3end',x$str,sep=".")
           y=data.frame(table(x$agreg))
-          y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")),sum_freq=y$Freq)
+          y=data.frame(colsplit(y$Var1,"\\.",c("5end","mate5end","str")), freq=y$Freq)
           y=y[,c(1,2,4,3)]
           colnames(y)[1]="5end"
 
