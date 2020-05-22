@@ -38,9 +38,21 @@ library(APERO)
 ```
 
 APERO package contain two main functions; One for each module. 
-For further documentation, please refer to the example script and function help with help("APERO_start_detection") and help("APERO_stop_detection"). 
+For further documentation, please refer to the example script and function help with help("APERO_start_detection") and help("APERO_end_detection"). 
 
-An example dataset with the script used to detect RNAs is also provided in the example folder
+An example dataset with the script used to detect RNAs is also provided in the example folder.
+
+The APERO_end_detection output is a table (1 line = 1 detected transcript) containing the following columns :
+ID_Transcrit : Detected transcript ID
+Position : Start position of the detected transcript
+Positional.Uncertainty : Uncerntainty of the detected position (in nt)
+lg : Length of the detected RNA
+str : Strand of the detected RNA
+freq : Number of reads at the start positions
+iteration_nb : Number of iterations used to detect the RNA end (See the end detection method in APERO paper)
+last_Ftsse : Laste Ftsse value (see the APERO paper for the definition of Ftsse)
+Class : Annotation of the detected RNA according to supplementary figure 2 in APERO paper
+Comment : Detailed annotation
 
 # Reference
 If you want too know more about APERO program and evaluation, have a look a the APERO publication :
