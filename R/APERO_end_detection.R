@@ -506,7 +506,7 @@ APERO_end_detection <-
       f$Positional.Uncertainty = ifelse(f$str == "+", ((f$Position + 
                                                           f$lg - 1) - (f$Position - f$Positional.Uncertainty))/2, 
                                         ((f$Position - f$lg + 1) - (f$Position + f$Positional.Uncertainty))/2)
-      fii = annot_apply_RNA_ptt(f, ptt, genome_size)
+      fii = annot_apply_RNA_ptt(f, ptt_file, genome_size)
       
       
       fin = fi[, c(1:3, 14, 4, 5, 13, 12)]
